@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -36,6 +37,30 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $input = $request->validated();
+        
+        $credentials = [
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => $input['password']
+        ];
+
+        $userExists = User::where([
+            ['email', 'like', '%'.$credentials['email'].'%']
+        ])->get();
+
+        if( count($userExists) >= 1 ){
+            return response()->json('failed');
+        }
+
+        $credentials['password'] = bcrypt($credentials['password']);
+        User::create($credentials);
+
+        return response()->json('success'); 
     }
 
     protected function respondWithToken($token)
