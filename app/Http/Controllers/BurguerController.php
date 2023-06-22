@@ -16,4 +16,13 @@ class BurguerController extends Controller
 
         return response()->json($dados);
     }
+
+    public function burguerStatus()
+    {
+        $tabela = 'status';
+        
+        $dados = DB::table($tabela)->get();
+
+        return response()->json($dados);
+    }
 }
