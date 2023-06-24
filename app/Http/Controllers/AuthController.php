@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 
+use App\Models\User;
+
 class AuthController extends Controller
 {
     /**
@@ -52,7 +54,7 @@ class AuthController extends Controller
         $userExists = User::where([
             ['email', 'like', '%'.$credentials['email'].'%']
         ])->get();
-
+        
         if( count($userExists) >= 1 ){
             return response()->json('failed');
         }
