@@ -21,7 +21,7 @@ Route::post('/register', [ AuthController::class, 'register' ]);
 
 Route::get('/burguerIngredients', [ BurguerController::class, 'burguerIngredients' ]);
 Route::get('/burguerStatus', [ BurguerController::class, 'burguerStatus' ]);
-Route::get('/burguerCreate', [ BurguerController::class, 'burguerCreate' ]);
+Route::post('/burguerCreate', [ BurguerController::class, 'burguerCreate' ]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

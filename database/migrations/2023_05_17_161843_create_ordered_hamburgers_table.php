@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('meat');
             $table->string('bread');
             $table->string('optionals');
+            $table->string('status');
             $table->timestamps();
         });
     }
