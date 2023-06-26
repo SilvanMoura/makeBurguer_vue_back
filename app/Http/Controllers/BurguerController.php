@@ -52,6 +52,15 @@ class BurguerController extends Controller
 
         $burguer->save();
         
-        return 'success';
+        return $burguer;
+    }
+
+    public function burguerAll()
+    {
+        $burguer = new Burguer;
+
+        $burguers = $burguer::all();
+
+        return $burguers;
     }
 }
