@@ -38,9 +38,7 @@ class BurguerController extends Controller
             $resOptionals .= "$value";
 
             if ($key < $count - 2) {
-                $resOptionals .= ", ";
-            } elseif ($key == $count - 2) {
-                $resOptionals .= " e ";
+                $resOptionals .= ",";
             }
         }
 
@@ -62,5 +60,17 @@ class BurguerController extends Controller
         $burguers = $burguer::all();
 
         return $burguers;
+    }
+
+    public function burguerDelete(Request $id){
+        $burgerOrder = Burguer::find($id['id']);
+
+        if (!$burgerOrder) {
+            return response()->json(['message' => 'Registro não encontrado.'], 404);
+        }
+
+        $burgerOrder->delete();
+
+        return response()->json(['message' => 'success']);
     }
 }
