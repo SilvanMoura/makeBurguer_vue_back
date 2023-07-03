@@ -73,4 +73,17 @@ class BurguerController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function burguerUpdate(Request $request, $id){
+        
+        $burguer = Burguer::findOrFail($id);
+
+        $burguer->fill($request->only([
+            'status'
+        ]));
+        
+        $burguer->save();
+
+        return $burguer;
+    }
 }

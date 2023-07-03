@@ -24,6 +24,7 @@ Route::get('/burguerStatus', [ BurguerController::class, 'burguerStatus' ]);
 Route::post('/burguerCreate', [ BurguerController::class, 'burguerCreate' ]);
 Route::get('/burguerAll', [ BurguerController::class, 'burguerAll' ]);
 Route::delete('/burguerDelete/{id}', [ BurguerController::class, 'burguerDelete' ]);
+Route::patch('/burguerUpdate/{id}', [ BurguerController::class, 'burguerUpdate' ]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
